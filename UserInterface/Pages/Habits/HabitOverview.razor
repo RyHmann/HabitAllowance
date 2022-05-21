@@ -1,0 +1,33 @@
+﻿@page "/habits"
+
+<h1 class="page-title">Habits</h1>
+
+@if (Habits == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Habit</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var habit in Habits)
+        {
+            <tr>
+                <td>@habit.Title</td>
+                <td>@habit.Description</td>
+                <td>
+                    <a href="@($"habitdetail/{habit.Id}")" class="btn btn-outline-primary table-btn">View Habit</a>
+                    <a href="@($"habitedit/{habit.Id}")" class="btn btn-outline-info table-btn">Edit Habit</a>
+                </td>
+            </tr>
+        }
+        <a class="btn btn-primary" href="habitadd" role="button">Add new Habit</a>
+    </tbody>
+</table>
+}

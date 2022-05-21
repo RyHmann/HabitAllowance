@@ -1,0 +1,29 @@
+﻿@page "/habiteventadd/{habitroutineid}"
+
+@if (!Saved)
+{
+    <section class="habit-edit">
+        <h1 class="page-title">Add Event</h1>
+        <EditForm Model = "@HabitEvent" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <ValidationSummary></ValidationSummary>
+            <div class="form-group-row">
+                <label for="habitName" class="col-sm-3">New Routine Name:</label>
+                <InputText id="habitName" class="form-control col-sm-8" @bind-Value="@HabitEvent.Title" placeholder="Enter Routine title"></InputText>
+            </div>
+            <div class="form-group-row">
+                <label for="habitDescription" class="col-sm-3">Routine Description:</label>
+                <InputText id="habitDescription" class="form-control col-sm-8" @bind-Value="@HabitEvent.Description" placeholder="A brief description"></InputText>
+            </div>
+            <div class="form-group row">
+		        <label for="effectivedate" class="col-sm-3">Completed On: </label>
+		        <InputDate id="effectivedate" class="form-control col-sm-8" @bind-Value="@HabitEvent.EffectiveDate" placeholder="Select date"></InputDate>
+	        </div>
+            <button type="submit" class="btn btn-primary edit-btn">Save Event</button>
+        </EditForm>
+    </section>
+}
+else
+{
+    <div class="alert @StatusClass">@StatusMessage</div>
+}

@@ -1,0 +1,42 @@
+﻿@page "/habitroutinedetail/{HabitRoutineId}"
+
+<h1 class="page-title">Details for @HabitRoutine.Title</h1>
+
+<div class="col-10 row">
+	<div class="col-xs-12 col-sm-8">
+		<div class="form-group row">
+			<div class="container">
+				<h2 class="h3">@HabitRoutine.Description</h2>
+			</div>
+		<div class="col-sm-4">
+			<a href="@($"habitroutineedit/{HabitRoutine.Id}")" class="btn btn-outline-info table-btn">Edit Routine</a>
+		</div>
+			<div class="col-sm-3">
+				<label type="text" class="form-control-plaintext">Reward: @RewardAmount</label>
+			</div>
+		</div>
+		@if (HabitRoutine.HabitEvents != null)
+		{
+			<h3 class="h3">Events completed</h3>
+		foreach (var habitEvent in HabitRoutine.HabitEvents)
+			{
+			<div class="form-group row">
+				<div class="col-sm-3">
+					<label type="text" class="form-control-plaintext">@habitEvent.Title</label>
+				</div>
+				<div class="col-sm-5">
+					<label type="text" class="form-control-plaintext">@habitEvent.Description</label>
+				</div>
+				<div class="col-sm-5">
+					<label type="text" class="form-control-plaintext">@habitEvent.EffectiveDate</label>
+				</div>
+				<div class="col-sm-4">
+					<a href="@($"eventdetail/{habitEvent.Id}")" class="btn btn-outline-info table-btn">View Event</a>
+				</div>
+			</div>
+			}
+		}
+		<a href="@($"habiteventadd/{HabitRoutine.Id}")" class="btn btn-outline-info table-btn">Add Event</a>
+		
+	</div>
+</div>

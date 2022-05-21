@@ -1,0 +1,28 @@
+﻿@page "/habitadd"
+
+
+@if (!Saved)
+{
+    <section class="habit-edit">
+        <h1 class="page-title">Add Habit</h1>
+        <EditForm Model = "@Habit" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <ValidationSummary></ValidationSummary>
+            <div class="form-group-row">
+                <label for="habitName" class="col-sm-3">New Habit Name:</label>
+                <InputText id="habitName" class="form-control col-sm-8" @bind-Value="@Habit.Title" placeholder="Enter Habit title"></InputText>
+            </div>
+            <div class="form-group-row">
+                <label for="habitDescription" class="col-sm-3">Habit Description:</label>
+                <InputText id="habitDescription" class="form-control col-sm-8" @bind-Value="@Habit.Description" placeholder="A brief description"></InputText>
+            </div>
+            <button type="submit" class="btn btn-primary edit-btn">Save Habit</button>
+        </EditForm>
+    </section>
+}
+else
+{
+    <div class="alert @StatusClass">@StatusMessage</div>
+}
+
+
