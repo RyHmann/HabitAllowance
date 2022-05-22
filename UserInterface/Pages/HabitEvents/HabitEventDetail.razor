@@ -1,0 +1,28 @@
+﻿@page "/habiteventdetail/{habiteventdetailid}"
+
+<h1 class="page-title">Details for @HabitEvent.Title</h1>
+
+<div class="col-10 row">
+	<div class="col-xs-12 col-sm-8">
+		<div class="form-group row">
+			<div class="container">
+				<h2 class="h3">@HabitEvent.Description</h2>
+			</div>
+			<div class="col-sm-4">
+				<a href="@($"habiteventedit/{HabitEvent.Id}")" class="btn btn-outline-info table-btn">Edit Event</a>
+				<div class="form-group row">
+					<div class="col-sm-3">
+						<label type="text" class="form-control-plaintext">@HabitEvent.Title</label>
+					</div>
+					<div class="col-sm-5">
+						<label type="text" class="form-control-plaintext">@HabitEvent.Description</label>
+					</div>
+					<div class="col-sm-5">
+						<label type="text" class="form-control-plaintext">@HabitEvent.EffectiveDate</label>
+					</div>
+				</div>
+				<a href="@($"habiteventdelete/{HabitEvent.Id}")" class="btn btn-outline-info table-btn">Delete Event</a>
+			</div>
+		</div>
+	</div>
+</div>
