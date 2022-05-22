@@ -32,7 +32,7 @@ namespace UserInterface.Services
 
         public async Task<HabitEvent> GetHabitEventById(int id)
         {
-            return await JsonSerializer.DeserializeAsync<HabitEvent>(await httpClient.GetStreamAsync($"{ApiUrl}/habitevent/{id}"));
+            return await JsonSerializer.DeserializeAsync<HabitEvent>(await httpClient.GetStreamAsync($"{ApiUrl}/habitevent/{id}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
         public async Task UpdateHabitEvent(HabitEvent habitEvent)

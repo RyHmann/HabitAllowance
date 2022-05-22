@@ -28,7 +28,6 @@ namespace UserInterface.Pages.HabitRoutines
         {
             RewardAmount = RewardDataService.GetReward();
             HabitRoutine = await HabitRoutineDataService.GetHabitRoutineById(habitRoutineIdInt);
-            var title = HabitRoutine.Title;
         }
 
     }
