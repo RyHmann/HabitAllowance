@@ -1,8 +1,41 @@
 ﻿@inherits LayoutComponentBase
 
+<MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme"/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
 <PageTitle>UserInterface</PageTitle>
 
-<div class="page">
+<MudLayout>
+    <MudAppBar>
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            <MudText Typo="Typo.h6">Habit Allowance App</MudText>
+            <MudSpacer/>
+        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode"/>
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_drawerOpen">
+        <HabitNavMenu/>
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Medium">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme _theme = new();
+    private bool _isDarkMode;
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}
+
+
+@*<div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
@@ -16,4 +49,4 @@
             @Body
         </article>
     </main>
-</div>
+</div>*@

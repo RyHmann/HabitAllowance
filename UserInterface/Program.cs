@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using MudBlazor.Services;
 using UserInterface.Data;
 using UserInterface.Services;
 using UserInterface.Services.Interfaces;
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddMudServices();
 
 // TODO: How to not hard code these values?
 string uriString = "https://localhost:7061/";
