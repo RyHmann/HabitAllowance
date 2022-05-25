@@ -16,7 +16,7 @@ namespace UserInterface.Pages.HabitRoutines
         [Inject]
         public IRewardDataService RewardDataService { get; set; }
         public HabitRoutine HabitRoutine { get; set; } = new HabitRoutine();
-        public HabitEventReward Reward { get; set; }
+        public Reward Reward { get; set; }
         [Parameter]
         public string HabitRoutineId { get; set; }
         private int habitRoutineIdInt

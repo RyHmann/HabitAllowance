@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class HabitEventReward : BaseEntity
+    public class Reward : BaseEntity
     {
         [Column(TypeName ="money")]
         public decimal Currency { get; set; }

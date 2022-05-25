@@ -15,9 +15,4 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\HabitEventRewardFeatures\Commands\" />
-    <Folder Include="Features\HabitEventRewardFeatures\Queiries\" />
-  </ItemGroup>
-
 </Project>

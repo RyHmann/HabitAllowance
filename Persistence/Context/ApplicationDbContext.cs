@@ -9,7 +9,7 @@ namespace Persistence.Context
         public virtual DbSet<Habit> Habits { get; set; }
         public virtual DbSet<HabitEvent> HabitEvents { get; set; }
         public virtual DbSet<HabitRoutine> HabitRoutines { get; set; }
-        public virtual DbSet<HabitEventReward> HabitEventRewards { get; set; }
+        public virtual DbSet<Reward> Rewards { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -20,7 +20,7 @@ namespace Persistence.Context
             builder.Entity<Habit>();
             builder.Entity<HabitRoutine>();
             builder.Entity<HabitEvent>();
-            builder.Entity<HabitEventReward>();
+            builder.Entity<Reward>();
         }
 
         public async Task<int> SaveChanges()

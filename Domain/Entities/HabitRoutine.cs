@@ -16,6 +16,6 @@ namespace Domain.Entities
         [JsonIgnore]
         public Habit Habit { get; set; }
         public List<HabitEvent> HabitEvents { get; set; }
-        public virtual HabitEventReward Reward { get; set; }
+        public virtual Reward Reward { get; set; }
     }
 }

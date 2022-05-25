@@ -22,7 +22,7 @@ namespace Persistence
                     { 
                         new HabitRoutine 
                         { 
-                            Title = "Regular Jogs", Description = "Trying to jog more regulary", Reward = new HabitEventReward {Currency = 5.00M, RewardType = Domain.Enums.RewardType.Currency}
+                            Title = "Regular Jogs", Description = "Trying to jog more regulary", Reward = new Reward {Currency = 5.00M, RewardType = Domain.Enums.RewardType.Currency}
                         } 
                     }
                 });
