@@ -14,10 +14,17 @@ namespace UserInterface.Pages.Habits
         public IEnumerable<Habit> Habits { get; set; }
         [Inject]
         public IHabitDataService HabitDataService { get; set; }
+        public bool showRoutine { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             Habits = (await HabitDataService.GetAllHabits()).ToList();
+        }
+
+        private void ShowBtnPress(int habitId)
+        {
+            var habitClicked = Habits.First(f => f.Id == habitId);
+            showRoutine = !showRoutine;
         }
     }
 }

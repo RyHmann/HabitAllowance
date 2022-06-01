@@ -1,5 +1,73 @@
 ﻿@page "/habits"
 
+<MudContainer>
+    <MudPaper>
+        <MudText Typo="Typo.h4">Your Habits</MudText>
+        <MudTable Items="Habits" Hover="true" Breakpoint="Breakpoint.Sm">
+            <ColGroup>
+                <col style="width:300px" />
+                <col style="width:100px" />
+                <col />
+                <col style="width:100px" />
+            </ColGroup>
+            <HeaderContent>
+                <MudTh></MudTh>
+                <MudTh>Name</MudTh>
+                <MudTh>Description</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>
+                    <MudButton Variant="Variant.Outlined" Size="Size.Small" OnClick="@(()=>ShowBtnPress(context.Id))">
+                        @((@showRoutine == true)? "Hide" : "Show") Routines
+                    </MudButton>
+                </MudTd>
+                <MudTd DataLabel="Name"><strong>@context.Title</strong></MudTd>
+                <MudTd DataLabel="Description">@context.Description</MudTd>
+            </RowTemplate>
+            <ChildRowContent>
+                @if (@showRoutine)
+                {
+                    <MudTr>
+                        <td colspan="4">
+                            <MudCard Elevation="0">
+                                <MudCardHeader>
+                                    <CardHeaderContent>
+                                        <MudText Typo="Typo.body1">Routines for <strong>@context.Title</strong></MudText>
+                                    </CardHeaderContent>
+                                </MudCardHeader>
+                                <MudCardContent Class="pa-0">
+                                    <MudTable Items="@context.HabitRoutines" Context="RoutineContext" Hover="true" Breakpoint="Breakpoint.Sm" Elevation="0">
+                                        <ColGroup>
+                                            <col>
+                                            <col>
+                                            <col style="width:200px">
+                                        </ColGroup>
+                                        <HeaderContent>
+                                            <MudTh>Name</MudTh>
+                                            <MudTh>Description</MudTh>
+                                            <MudTh>Future Edit Button</MudTh>
+                                        </HeaderContent>
+                                        <RowTemplate>
+                                            <MudTd DataLabel="RoutineName">@RoutineContext.Title</MudTd>
+                                            <MudTd DataLabel="RoutineDescription">@RoutineContext.Description</MudTd>
+                                            <MudTd></MudTd>
+                                        </RowTemplate>
+                                    </MudTable>
+                                </MudCardContent>
+                            </MudCard>
+                        </td>
+                    </MudTr>
+                }
+            </ChildRowContent>
+        </MudTable>
+    </MudPaper>
+</MudContainer>
+
+
+
+
+
+
 <h1 class="page-title">Habits</h1>
 
 @if (Habits == null)

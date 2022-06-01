@@ -1,0 +1,20 @@
+﻿@page "/habitadd"
+
+<EditForm Model="@Habit" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Habit Name" @bind-Value="Habit.Title" For="@(() => Habit.Title)" Class="mt-3"></MudTextField>
+                </MudCardContent>
+                <MudCardContent>
+                    <MudTextField Label="Description" @bind-Value="Habit.Description" For="@(() => Habit.Description)" Class="mt-3"></MudTextField>
+                </MudCardContent>
+            </MudCard>
+            <MudCardActions>
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Add</MudButton>
+            </MudCardActions>
+        </MudItem>
+    </MudGrid>
+</EditForm>
