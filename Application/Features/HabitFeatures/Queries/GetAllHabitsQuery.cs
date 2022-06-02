@@ -21,7 +21,10 @@ namespace Application.Features.HabitFeatures.Queries
             }
             public async Task<IEnumerable<Habit>> Handle(GetAllHabitsQuery request, CancellationToken cancellationToken)
             {
-                var habitList = await context.Habits.ToListAsync();
+                // TODO: I assume this method goes away when Users are added...
+                var habitList = await context.Habits
+                    .Include(r => r.HabitRoutines)
+                    .ToListAsync();
                 if (habitList == null)
                 {
                     return null;

@@ -18,7 +18,7 @@
             <RowTemplate>
                 <MudTd>
                     <MudButton Variant="Variant.Outlined" Size="Size.Small" OnClick="@(()=>ShowBtnPress(context.Id))">
-                        @((@showRoutine == true)? "Hide" : "Show") Routines
+                        @((@showRoutine == true) ? "Hide" : "Show") Routines
                     </MudButton>
                 </MudTd>
                 <MudTd DataLabel="Name"><strong>@context.Title</strong></MudTd>
@@ -36,7 +36,7 @@
                                     </CardHeaderContent>
                                 </MudCardHeader>
                                 <MudCardContent Class="pa-0">
-                                    <MudTable Items="@context.HabitRoutines" Context="RoutineContext" Hover="true" Breakpoint="Breakpoint.Sm" Elevation="0">
+                                    <MudTable Items="@ViewableRoutines" Context="RoutineContext" Hover="true" Breakpoint="Breakpoint.Sm" Elevation="0">
                                         <ColGroup>
                                             <col>
                                             <col>

@@ -14,6 +14,7 @@ namespace UserInterface.Pages.Habits
         public IEnumerable<Habit> Habits { get; set; }
         [Inject]
         public IHabitDataService HabitDataService { get; set; }
+        public List<HabitRoutine> ViewableRoutines { get; set; }
         public bool showRoutine { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -23,7 +24,7 @@ namespace UserInterface.Pages.Habits
 
         private void ShowBtnPress(int habitId)
         {
-            var habitClicked = Habits.First(f => f.Id == habitId);
+            ViewableRoutines = Habits.FirstOrDefault(h => h.Id == habitId).HabitRoutines.ToList();
             showRoutine = !showRoutine;
         }
     }
