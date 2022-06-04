@@ -3,7 +3,7 @@
 <MudContainer>
     <MudPaper>
         <MudText Typo="Typo.h4">Your Habits</MudText>
-        <MudTable Items="Habits" Hover="true" Breakpoint="Breakpoint.Sm">
+        <MudTable Items="HabitViewModels" Hover="true" Breakpoint="Breakpoint.Sm">
             <ColGroup>
                 <col style="width:300px" />
                 <col style="width:100px" />
@@ -18,16 +18,16 @@
             <RowTemplate>
                 <MudTd>
                     <MudButton Variant="Variant.Outlined" Size="Size.Small" OnClick="@(()=>ShowBtnPress(context.Id))">
-                        @((@showRoutine == true) ? "Hide" : "Show") Routines
+                        @((context.isVisible) ? "Hide" : "Show") Routines
                     </MudButton>
                 </MudTd>
                 <MudTd DataLabel="Name"><strong>@context.Title</strong></MudTd>
                 <MudTd DataLabel="Description">@context.Description</MudTd>
             </RowTemplate>
             <ChildRowContent>
-                @if (@showRoutine)
-                {
-                    <MudTr>
+                @if (context.isVisible)
+                { 
+                <MudTr>
                         <td colspan="4">
                             <MudCard Elevation="0">
                                 <MudCardHeader>
@@ -36,7 +36,7 @@
                                     </CardHeaderContent>
                                 </MudCardHeader>
                                 <MudCardContent Class="pa-0">
-                                    <MudTable Items="@ViewableRoutines" Context="RoutineContext" Hover="true" Breakpoint="Breakpoint.Sm" Elevation="0">
+                                    <MudTable Items="@context.HabitRoutines" Context="RoutinesContext" Hover="true" Breakpoint="Breakpoint.Sm" Elevation="0">
                                         <ColGroup>
                                             <col>
                                             <col>
@@ -45,57 +45,22 @@
                                         <HeaderContent>
                                             <MudTh>Name</MudTh>
                                             <MudTh>Description</MudTh>
-                                            <MudTh>Future Edit Button</MudTh>
+                                            <MudTh></MudTh>
                                         </HeaderContent>
                                         <RowTemplate>
-                                            <MudTd DataLabel="RoutineName">@RoutineContext.Title</MudTd>
-                                            <MudTd DataLabel="RoutineDescription">@RoutineContext.Description</MudTd>
+                                            <MudTd DataLabel="RoutineName">@RoutinesContext.Title</MudTd>
+                                            <MudTd DataLabel="RoutineDescription">@RoutinesContext.Description</MudTd>
+                                            <MudTd DataLabel="AddRoutineEvent">
+                                                <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Medium"/></MudTd>
                                             <MudTd></MudTd>
                                         </RowTemplate>
                                     </MudTable>
                                 </MudCardContent>
                             </MudCard>
                         </td>
-                    </MudTr>
+                </MudTr>
                 }
             </ChildRowContent>
         </MudTable>
     </MudPaper>
 </MudContainer>
-
-
-
-
-
-
-<h1 class="page-title">Habits</h1>
-
-@if (Habits == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-    <thead>
-        <tr>
-            <th>Habit</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var habit in Habits)
-        {
-            <tr>
-                <td>@habit.Title</td>
-                <td>@habit.Description</td>
-                <td>
-                    <a href="@($"habitdetail/{habit.Id}")" class="btn btn-outline-primary table-btn">View Habit</a>
-                    <a href="@($"habitedit/{habit.Id}")" class="btn btn-outline-info table-btn">Edit Habit</a>
-                </td>
-            </tr>
-        }
-        <a class="btn btn-primary" href="habitadd" role="button">Add new Habit</a>
-    </tbody>
-</table>
-}
