@@ -1,0 +1,67 @@
+﻿@page "/habits"
+@using MudBlazor
+
+<MudContainer>
+    <MudPaper>
+        <MudText Typo="Typo.h4">Your Habits</MudText>
+        <MudTable Items="HabitViewModels" Hover="true" Breakpoint="Breakpoint.Sm">
+            <ColGroup>
+                <col style="width:300px" />
+                <col style="width:100px" />
+                <col />
+                <col style="width:100px" />
+            </ColGroup>
+            <HeaderContent>
+                <MudTh></MudTh>
+                <MudTh>Name</MudTh>
+                <MudTh>Description</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>
+                    <MudButton Variant="Variant.Outlined" Size="Size.Small" OnClick="@(()=>ShowBtnPress(context.Id))">
+                        @((context.isVisible) ? "Hide" : "Show") Routines
+                    </MudButton>
+                </MudTd>
+                <MudTd DataLabel="Name"><strong>@context.Title</strong></MudTd>
+                <MudTd DataLabel="Description">@context.Description</MudTd>
+            </RowTemplate>
+            <ChildRowContent>
+                @if (context.isVisible)
+                { 
+                <MudTr>
+                        <td colspan="4">
+                            <MudCard Elevation="0">
+                                <MudCardHeader>
+                                    <CardHeaderContent>
+                                        <MudText Typo="Typo.body1">Routines for <strong>@context.Title</strong></MudText>
+                                    </CardHeaderContent>
+                                </MudCardHeader>
+                                <MudCardContent Class="pa-0">
+                                    <MudTable Items="@context.HabitRoutines" Context="RoutinesContext" Hover="true" Breakpoint="Breakpoint.Sm" Elevation="0">
+                                        <ColGroup>
+                                            <col>
+                                            <col>
+                                            <col style="width:200px">
+                                        </ColGroup>
+                                        <HeaderContent>
+                                            <MudTh>Name</MudTh>
+                                            <MudTh>Description</MudTh>
+                                            <MudTh></MudTh>
+                                        </HeaderContent>
+                                        <RowTemplate>
+                                            <MudTd DataLabel="RoutineName">@RoutinesContext.Title</MudTd>
+                                            <MudTd DataLabel="RoutineDescription">@RoutinesContext.Description</MudTd>
+                                            <MudTd DataLabel="AddRoutineEvent">
+                                                <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Add" Size="Size.Medium"/></MudTd>
+                                            <MudTd></MudTd>
+                                        </RowTemplate>
+                                    </MudTable>
+                                </MudCardContent>
+                            </MudCard>
+                        </td>
+                </MudTr>
+                }
+            </ChildRowContent>
+        </MudTable>
+    </MudPaper>
+</MudContainer>

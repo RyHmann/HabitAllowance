@@ -5,6 +5,8 @@ using Persistence.Context;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using WebApi;
+using Microsoft.AspNetCore.Identity;
+using Persistence.Identity;
 
 public class Program
 {
@@ -23,8 +25,10 @@ public class Program
                 {
                     context.Database.Migrate();
                 }
+                var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
 
                 await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager);
             }
             catch (Exception ex)
             {

@@ -1,0 +1,38 @@
+﻿@page "/habitdetail/{habitid}"
+
+<h1 class="page-title">Details for @Habit.Title</h1>
+
+<div class="col-10 row">
+	<div class="col-xs-12 col-sm-8">
+		<div class="form-group row">
+			<div class="container">
+				<h2 class="h3">@Habit.Description</h2>
+			</div>
+		<div class="col-sm-4">
+		<a href="@($"habitedit/{Habit.Id}")" class="btn btn-outline-info table-btn">Edit Habit</a>
+		</div>
+		</div>
+		@if (Habit.HabitRoutines != null)
+		{
+			<h3 class="h3">Routines build habits</h3>
+		foreach (var habitRoutine in Habit.HabitRoutines)
+			{
+			<div class="form-group row">
+				<div class="col-sm-3">
+					<label type="text" class="form-control-plaintext">@habitRoutine.Title</label>
+				</div>
+				<div class="col-sm-5">
+					<label type="text" class="form-control-plaintext">@habitRoutine.Description</label>
+				</div>
+				<div class="col-sm-4">
+					<a href="@($"habitroutinedetail/{habitRoutine.Id}")" class="btn btn-outline-info table-btn">View Routine</a>
+				</div>
+			</div>
+			}
+		}
+		<a href="@($"habitroutineadd/{Habit.Id}")" class="btn btn-outline-info table-btn">Add Routine</a>
+		
+	</div>
+
+	
+</div>

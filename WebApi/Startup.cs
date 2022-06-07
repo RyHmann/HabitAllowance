@@ -34,6 +34,9 @@ namespace WebApi
             {
                 options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
+
+
+
             services.AddRazorPages();
             services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -83,6 +86,8 @@ namespace WebApi
                 app.UseHttpsRedirection();
 
                 app.UseRouting();
+                app.UseCors("Open");
+                app.UseStaticFiles();
 
                 //app.UseAuthorization();
 

@@ -1,5 +1,7 @@
 ﻿using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Persistence.Context;
+using Persistence.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,30 @@ namespace Persistence
 {
     public static class ApplicationDbContextSeed
     {
+        public static async Task SeedDefaultUserAsync(UserManager<IdentityUser> userManager)
+        {
+            if (userManager.FindByEmailAsync("habit@localhost").Result==null)
+            {
+                IdentityUser user = new IdentityUser
+                {
+                    UserName = "habit@localhost",
+                    Email = "habit@localhost"
+                };
+
+                IdentityResult result = userManager.CreateAsync(user, "Qwe123!@#").Result;
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "Admin").Wait();
+                }
+            }
+            //var admin = new IdentityUser { UserName = "admin@localhost", Email = "admin@localhost" };
+            //if (userManager.Users.All(u => u.UserName != admin.UserName))
+            //{
+            //    await userManager.CreateAsync(admin, "qwe123!@#");
+            //}
+        }
+        
         public static async Task SeedSampleDataAsync(ApplicationDbContext context)
         {
             if (!context.Habits.Any())
